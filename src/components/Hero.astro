@@ -87,12 +87,50 @@ const {
   .hero__overlay {
     position: absolute;
     inset: 0;
+    /* Texture béton générée en CSS avec bruit SVG */
+    background-color: #2a2a2a;
+    background-image: 
+      /* Vignette radiale - centre clair, bords sombres */
+      radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 30%,
+        rgba(0, 0, 0, 0.3) 60%,
+        rgba(0, 0, 0, 0.7) 100%
+      ),
+      /* Texture béton via SVG noise */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+      /* Grain subtil supplémentaire */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.5' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    background-blend-mode: normal, overlay, soft-light;
+    background-size: cover, 200px 200px, 150px 150px;
+    opacity: 0.95;
+  }
+
+  /* Couche de couleur sombre par-dessus la texture */
+  .hero__overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.8) 50%,
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
       rgba(0, 0, 0, 0.7) 100%
     );
+  }
+
+  /* Légère touche de jaune subtile en bas à gauche */
+  .hero__overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 0% 100%,
+      rgba(255, 230, 0, 0.05) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
   }
 
   .hero__container {

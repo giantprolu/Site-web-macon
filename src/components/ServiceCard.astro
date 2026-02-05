@@ -4,9 +4,10 @@ interface Props {
   description: string;
   icon: string;
   features?: string[];
+  link?: string;
 }
 
-const { title, description, icon, features = [] } = Astro.props;
+const { title, description, icon, features = [], link } = Astro.props;
 
 const icons: Record<string, string> = {
   masonry: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
@@ -18,23 +19,49 @@ const icons: Record<string, string> = {
 };
 ---
 
-<article class="service-card">
-  <div class="service-card__icon" set:html={icons[icon] || icons.masonry} />
-  <h3 class="service-card__title">{title}</h3>
-  <p class="service-card__description">{description}</p>
-  {features.length > 0 && (
-    <ul class="service-card__features">
-      {features.map((feature) => (
-        <li class="service-card__feature">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          {feature}
-        </li>
-      ))}
-    </ul>
-  )}
-</article>
+{link ? (
+  <a href={link} class="service-card service-card--link">
+    <div class="service-card__icon" set:html={icons[icon] || icons.masonry} />
+    <h3 class="service-card__title">{title}</h3>
+    <p class="service-card__description">{description}</p>
+    {features.length > 0 && (
+      <ul class="service-card__features">
+        {features.map((feature) => (
+          <li class="service-card__feature">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    )}
+    <span class="service-card__arrow">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </span>
+  </a>
+) : (
+  <article class="service-card">
+    <div class="service-card__icon" set:html={icons[icon] || icons.masonry} />
+    <h3 class="service-card__title">{title}</h3>
+    <p class="service-card__description">{description}</p>
+    {features.length > 0 && (
+      <ul class="service-card__features">
+        {features.map((feature) => (
+          <li class="service-card__feature">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    )}
+  </article>
+)}
 
 <style>
   .service-card {
@@ -94,5 +121,35 @@ const icons: Record<string, string> = {
   .service-card__feature svg {
     color: var(--color-yellow);
     flex-shrink: 0;
+  }
+
+  /* Clickable card styles */
+  .service-card--link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .service-card__arrow {
+    position: absolute;
+    bottom: var(--spacing-xl);
+    right: var(--spacing-xl);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-yellow);
+    border-radius: 50%;
+    color: var(--color-black);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all var(--transition-normal);
+  }
+
+  .service-card--link:hover .service-card__arrow {
+    opacity: 1;
+    transform: translateX(0);
   }
 </style>

@@ -1,46 +1,55 @@
 ---
+export const prerender = true;
+
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import CTASection from '../components/CTASection.astro';
+import Map from '../components/Map.astro';
 
 const services = [
   {
     title: 'Maçonnerie Neuf',
     description: 'Construction de murs, fondations, dalles et tous travaux de maçonnerie pour vos projets neufs.',
     icon: 'masonry',
-    features: ['Murs et cloisons', 'Fondations', 'Dalles béton']
+    features: ['Murs et cloisons', 'Fondations', 'Dalles béton'],
+    link: '/services#maconnerie'
   },
   {
     title: 'Rénovation',
     description: 'Rénovation complète ou partielle de votre habitat : reprise de maçonnerie, ouvertures, agrandissement.',
     icon: 'renovation',
-    features: ['Reprise de maçonnerie', 'Création d\'ouvertures', 'Agrandissement']
+    features: ['Reprise de maçonnerie', 'Création d\'ouvertures', 'Agrandissement'],
+    link: '/services#renovation'
   },
   {
     title: 'Nettoyage Hydrofuge',
     description: 'Traitement et protection de vos surfaces contre l\'humidité et les infiltrations.',
     icon: 'hydrofuge',
-    features: ['Traitement anti-humidité', 'Protection longue durée', 'Imperméabilisation']
+    features: ['Traitement anti-humidité', 'Protection longue durée', 'Imperméabilisation'],
+    link: '/services#hydrofuge'
   },
   {
     title: 'Toiture',
     description: 'Entretien, réparation et nettoyage de toiture pour préserver votre couverture.',
     icon: 'roof',
-    features: ['Nettoyage toiture', 'Démoussage', 'Réparations']
+    features: ['Nettoyage toiture', 'Démoussage', 'Réparations'],
+    link: '/services#toiture'
   },
   {
     title: 'Façade',
     description: 'Ravalement, nettoyage et traitement de façade pour redonner vie à vos murs extérieurs.',
     icon: 'facade',
-    features: ['Ravalement', 'Nettoyage haute pression', 'Peinture façade']
+    features: ['Ravalement', 'Nettoyage haute pression', 'Peinture façade'],
+    link: '/services#facade'
   },
   {
     title: 'Travaux Divers',
     description: 'Tous travaux intérieurs et extérieurs : terrasses, clôtures, aménagements.',
     icon: 'exterior',
-    features: ['Terrasses', 'Clôtures', 'Aménagements extérieurs']
+    features: ['Terrasses', 'Clôtures', 'Aménagements extérieurs'],
+    link: '/services#travaux-divers'
   }
 ];
 
@@ -152,14 +161,7 @@ const reasons = [
           </a>
         </div>
         <div class="zone__map" aria-label="Zone d'intervention EIRL REPAIN">
-          <div class="zone__map-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            <span>Beauvoir sur Niort</span>
-            <span class="zone__radius">Rayon 50km</span>
-          </div>
+          <Map />
         </div>
       </div>
     </div>
@@ -250,35 +252,17 @@ const reasons = [
   }
 
   .zone__map {
-    background-color: var(--color-gray-light);
-    border-radius: var(--radius-lg);
     height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  .zone__map-placeholder {
-    text-align: center;
-    color: var(--color-gray);
+  /* Surcharge du map-wrapper pour qu'il remplisse zone__map */
+  .zone__map :global(.map-wrapper) {
+    height: 100%;
+    border-radius: var(--radius-lg);
   }
 
-  .zone__map-placeholder svg {
-    color: var(--color-yellow);
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .zone__map-placeholder span {
-    display: block;
-    font-weight: 600;
-    color: var(--color-black);
-  }
-
-  .zone__radius {
-    font-size: 0.875rem;
-    color: var(--color-gray) !important;
-    font-weight: 400 !important;
-    margin-top: var(--spacing-xs);
+  .zone__map :global(.map) {
+    height: 100% !important;
   }
 
   @media (max-width: 768px) {
@@ -287,7 +271,7 @@ const reasons = [
     }
 
     .zone__map {
-      height: 250px;
+      height: 300px;
     }
   }
 </style>

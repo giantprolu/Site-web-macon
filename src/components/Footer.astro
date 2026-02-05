@@ -8,11 +8,11 @@ const navLinks = [
 ];
 
 const services = [
-  'Maçonnerie neuf',
-  'Rénovation',
-  'Nettoyage hydrofuge',
-  'Toiture',
-  'Façade',
+  { label: 'Maçonnerie neuf', href: '/services#maconnerie' },
+  { label: 'Rénovation', href: '/services#renovation' },
+  { label: 'Nettoyage hydrofuge', href: '/services#hydrofuge' },
+  { label: 'Toiture', href: '/services#toiture' },
+  { label: 'Façade', href: '/services#facade' },
 ];
 ---
 
@@ -51,7 +51,7 @@ const services = [
         <ul class="footer__list">
           {services.map((service) => (
             <li>
-              <span class="footer__service">{service}</span>
+              <a href={service.href} class="footer__link">{service.label}</a>
             </li>
           ))}
         </ul>
@@ -165,11 +165,6 @@ const services = [
 
   .footer__link:hover {
     color: var(--color-yellow);
-  }
-
-  .footer__service {
-    color: var(--color-gray);
-    font-size: 0.9375rem;
   }
 
   .footer__contact li {
