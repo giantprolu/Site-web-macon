@@ -1,11 +1,293 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import CTASection from '../components/CTASection.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const services = [
+  {
+    title: 'Maçonnerie Neuf',
+    description: 'Construction de murs, fondations, dalles et tous travaux de maçonnerie pour vos projets neufs.',
+    icon: 'masonry',
+    features: ['Murs et cloisons', 'Fondations', 'Dalles béton']
+  },
+  {
+    title: 'Rénovation',
+    description: 'Rénovation complète ou partielle de votre habitat : reprise de maçonnerie, ouvertures, agrandissement.',
+    icon: 'renovation',
+    features: ['Reprise de maçonnerie', 'Création d\'ouvertures', 'Agrandissement']
+  },
+  {
+    title: 'Nettoyage Hydrofuge',
+    description: 'Traitement et protection de vos surfaces contre l\'humidité et les infiltrations.',
+    icon: 'hydrofuge',
+    features: ['Traitement anti-humidité', 'Protection longue durée', 'Imperméabilisation']
+  },
+  {
+    title: 'Toiture',
+    description: 'Entretien, réparation et nettoyage de toiture pour préserver votre couverture.',
+    icon: 'roof',
+    features: ['Nettoyage toiture', 'Démoussage', 'Réparations']
+  },
+  {
+    title: 'Façade',
+    description: 'Ravalement, nettoyage et traitement de façade pour redonner vie à vos murs extérieurs.',
+    icon: 'facade',
+    features: ['Ravalement', 'Nettoyage haute pression', 'Peinture façade']
+  },
+  {
+    title: 'Travaux Divers',
+    description: 'Tous travaux intérieurs et extérieurs : terrasses, clôtures, aménagements.',
+    icon: 'exterior',
+    features: ['Terrasses', 'Clôtures', 'Aménagements extérieurs']
+  }
+];
+
+const reasons = [
+  {
+    number: '15+',
+    label: 'Années d\'expérience',
+    description: 'Un savoir-faire éprouvé dans le domaine de la maçonnerie'
+  },
+  {
+    number: '100%',
+    label: 'Clients satisfaits',
+    description: 'La qualité et le sérieux sont nos priorités'
+  },
+  {
+    number: '50km',
+    label: 'Zone d\'intervention',
+    description: 'Nous intervenons autour de Beauvoir sur Niort'
+  },
+  {
+    number: '48h',
+    label: 'Devis rapide',
+    description: 'Réponse sous 48h pour tous vos projets'
+  }
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Accueil"
+  description="EIRL REPAIN, votre expert en maçonnerie et rénovation à Beauvoir sur Niort (79360). Travaux de maçonnerie neuf et rénovation, nettoyage hydrofuge, toiture et façade. Devis gratuit."
+>
+  <!-- Hero Section -->
+  <Hero
+    title="Expert en Maçonnerie"
+    highlight="& Rénovation"
+    subtitle="EIRL REPAIN, votre artisan maçon de confiance à Beauvoir sur Niort. Nous réalisons tous vos travaux de maçonnerie, rénovation, nettoyage hydrofuge et entretien de toiture et façade."
+    ctaText="Devis Gratuit"
+    ctaLink="/contact"
+    secondaryCtaText="Nos Services"
+    secondaryCtaLink="/services"
+  />
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <div class="container">
+      <SectionTitle
+        subtitle="Nos Services"
+        title="Des solutions adaptées à "
+        highlight="vos besoins"
+      />
+      <div class="grid grid--3">
+        {services.map((service) => (
+          <ServiceCard {...service} />
+        ))}
+      </div>
+      <div class="services__cta">
+        <a href="/services" class="btn btn--outline">
+          Découvrir tous nos services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section section--black why-us">
+    <div class="container">
+      <SectionTitle
+        subtitle="Pourquoi nous choisir"
+        title="Un artisan de "
+        highlight="confiance"
+        light={true}
+      />
+      <div class="reasons">
+        {reasons.map((reason) => (
+          <div class="reason">
+            <span class="reason__number">{reason.number}</span>
+            <h3 class="reason__label">{reason.label}</h3>
+            <p class="reason__description">{reason.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Zone d'intervention -->
+  <section class="section zone">
+    <div class="container">
+      <div class="zone__grid">
+        <div class="zone__content">
+          <SectionTitle
+            subtitle="Zone d'intervention"
+            title="Nous intervenons près de "
+            highlight="chez vous"
+            centered={false}
+          />
+          <p class="zone__text">
+            Basés à <strong>Beauvoir sur Niort</strong>, nous intervenons dans un rayon de 50km,
+            couvrant notamment :
+          </p>
+          <ul class="zone__list">
+            <li>Beauvoir sur Niort et environs</li>
+            <li>Niort et agglomération</li>
+            <li>La Rochelle</li>
+            <li>Fontenay-le-Comte</li>
+            <li>Toutes les communes des Deux-Sèvres (79)</li>
+          </ul>
+          <a href="/contact" class="btn btn--primary">
+            Vérifier ma zone
+          </a>
+        </div>
+        <div class="zone__map" aria-label="Zone d'intervention EIRL REPAIN">
+          <div class="zone__map-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Beauvoir sur Niort</span>
+            <span class="zone__radius">Rayon 50km</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTASection
+    title="Un projet de maçonnerie ou rénovation ?"
+    subtitle="Contactez-nous pour un devis gratuit et sans engagement"
+  />
 </Layout>
+
+<style>
+  /* Services CTA */
+  .services__cta {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+  }
+
+  /* Why Us Section */
+  .reasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  .reason {
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+
+  .reason__number {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-yellow);
+    line-height: 1;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .reason__label {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .reason__description {
+    color: var(--color-gray);
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  /* Zone Section */
+  .zone__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+  }
+
+  .zone__text {
+    color: var(--color-gray-dark);
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .zone__list {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .zone__list li {
+    position: relative;
+    padding-left: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-gray-dark);
+  }
+
+  .zone__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-yellow);
+    border-radius: 50%;
+  }
+
+  .zone__map {
+    background-color: var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .zone__map-placeholder {
+    text-align: center;
+    color: var(--color-gray);
+  }
+
+  .zone__map-placeholder svg {
+    color: var(--color-yellow);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .zone__map-placeholder span {
+    display: block;
+    font-weight: 600;
+    color: var(--color-black);
+  }
+
+  .zone__radius {
+    font-size: 0.875rem;
+    color: var(--color-gray) !important;
+    font-weight: 400 !important;
+    margin-top: var(--spacing-xs);
+  }
+
+  @media (max-width: 768px) {
+    .zone__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .zone__map {
+      height: 250px;
+    }
+  }
+</style>

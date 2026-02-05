@@ -1,0 +1,188 @@
+---
+interface Props {
+  title: string;
+  highlight?: string;
+  subtitle: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  backgroundImage?: string;
+}
+
+const {
+  title,
+  highlight,
+  subtitle,
+  ctaText = 'Devis Gratuit',
+  ctaLink = '/contact',
+  secondaryCtaText,
+  secondaryCtaLink,
+  backgroundImage
+} = Astro.props;
+---
+
+<section class="hero" style={backgroundImage ? `--bg-image: url(${backgroundImage})` : ''}>
+  <div class="hero__overlay"></div>
+  <div class="container hero__container">
+    <div class="hero__content">
+      <h1 class="hero__title animate-fade-in-up">
+        {title}
+        {highlight && <span class="hero__highlight">{highlight}</span>}
+      </h1>
+      <p class="hero__subtitle animate-fade-in-up" style="animation-delay: 0.1s;">
+        {subtitle}
+      </p>
+      <div class="hero__actions animate-fade-in-up" style="animation-delay: 0.2s;">
+        <a href={ctaLink} class="btn btn--primary btn--large">
+          {ctaText}
+        </a>
+        {secondaryCtaText && secondaryCtaLink && (
+          <a href={secondaryCtaLink} class="btn btn--secondary btn--large">
+            {secondaryCtaText}
+          </a>
+        )}
+      </div>
+      <div class="hero__trust animate-fade-in-up" style="animation-delay: 0.3s;">
+        <div class="trust__item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Devis gratuit</span>
+        </div>
+        <div class="trust__item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Intervention rapide</span>
+        </div>
+        <div class="trust__item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Artisan qualifié</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-black);
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+
+  .hero__container {
+    position: relative;
+    z-index: 1;
+    padding: var(--spacing-3xl) var(--container-padding);
+  }
+
+  .hero__content {
+    max-width: 800px;
+  }
+
+  .hero__title {
+    color: var(--color-white);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .hero__highlight {
+    color: var(--color-yellow);
+    display: block;
+  }
+
+  .hero__subtitle {
+    color: var(--color-gray);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .hero__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+  }
+
+  .trust__item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-gray);
+    font-size: 0.9375rem;
+  }
+
+  .trust__item svg {
+    color: var(--color-yellow);
+    flex-shrink: 0;
+  }
+
+  /* Décoration */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--color-yellow) 0%, transparent 70%);
+    opacity: 0.05;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+    }
+
+    .hero__actions .btn {
+      width: 100%;
+    }
+
+    .hero__trust {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+  }
+</style>

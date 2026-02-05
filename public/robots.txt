@@ -1,0 +1,8 @@
+# Robots.txt pour EIRL REPAIN
+# https://eirl-repain.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://eirl-repain.fr/sitemap-index.xml

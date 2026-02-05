@@ -1,23 +1,129 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = '/og-image.jpg'
+} = Astro.props;
+
+const siteTitle = `${title} | EIRL REPAIN - Maçonnerie & Rénovation`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- SEO Meta -->
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="maçonnerie, rénovation, hydrofuge, toiture, façade, Beauvoir sur Niort, 79360, Deux-Sèvres, maçon, travaux" />
+    <meta name="author" content="EIRL REPAIN" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Geo Meta pour SEO local -->
+    <meta name="geo.region" content="FR-79" />
+    <meta name="geo.placename" content="Beauvoir sur Niort" />
+    <meta name="geo.position" content="46.1833;-0.4667" />
+    <meta name="ICBM" content="46.1833, -0.4667" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="EIRL REPAIN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Preconnect pour performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Generator -->
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://eirl-repain.fr/#business",
+      "name": "EIRL REPAIN",
+      "description": "Entreprise de maçonnerie et rénovation à Beauvoir sur Niort. Travaux de maçonnerie neuf et rénovation, nettoyage hydrofuge, toiture et façade.",
+      "url": "https://eirl-repain.fr",
+      "telephone": "+33678965418",
+      "email": "eirl.repain@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "530 Route nationale",
+        "addressLocality": "Beauvoir sur Niort",
+        "postalCode": "79360",
+        "addressCountry": "FR",
+        "addressRegion": "Nouvelle-Aquitaine"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 46.1833,
+        "longitude": -0.4667
+      },
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 46.1833,
+          "longitude": -0.4667
+        },
+        "geoRadius": "50000"
+      },
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      ],
+      "sameAs": [],
+      "image": "https://eirl-repain.fr/og-image.jpg",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "SIRET",
+        "value": "882 085 244 00011"
+      }
+    })} />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

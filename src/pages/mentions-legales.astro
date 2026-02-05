@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+---
+
+<Layout
+  title="Mentions Légales"
+  description="Mentions légales du site EIRL REPAIN, entreprise de maçonnerie et rénovation à Beauvoir sur Niort (79360)."
+>
+  <section class="page-header section--black">
+    <div class="container">
+      <SectionTitle
+        title="Mentions "
+        highlight="Légales"
+        light={true}
+      />
+    </div>
+  </section>
+
+  <section class="section legal">
+    <div class="container">
+      <article class="legal__content">
+        <h2>1. Informations légales</h2>
+        <p>Le présent site est édité par :</p>
+        <ul>
+          <li><strong>Raison sociale :</strong> EIRL REPAIN</li>
+          <li><strong>Forme juridique :</strong> Entreprise Individuelle à Responsabilité Limitée</li>
+          <li><strong>Siège social :</strong> 530 Route nationale, 79360 Beauvoir sur Niort</li>
+          <li><strong>SIRET :</strong> 882 085 244 00011</li>
+          <li><strong>Téléphone :</strong> 06 78 96 54 18</li>
+          <li><strong>Email :</strong> eirl.repain@outlook.com</li>
+        </ul>
+
+        <h2>2. Hébergement</h2>
+        <p>Ce site est hébergé par :</p>
+        <p>[À compléter avec les informations de l'hébergeur]</p>
+
+        <h2>3. Propriété intellectuelle</h2>
+        <p>
+          L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, etc.)
+          est la propriété exclusive d'EIRL REPAIN, à l'exception des marques, logos ou
+          contenus appartenant à d'autres sociétés partenaires ou auteurs.
+        </p>
+        <p>
+          Toute reproduction, distribution, modification, adaptation, retransmission ou
+          publication de ces différents éléments est strictement interdite sans l'accord
+          exprès par écrit d'EIRL REPAIN.
+        </p>
+
+        <h2>4. Protection des données personnelles</h2>
+        <p>
+          Conformément au Règlement Général sur la Protection des Données (RGPD) et à la
+          loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification,
+          de suppression et d'opposition aux données personnelles vous concernant.
+        </p>
+        <p>
+          Les données collectées via le formulaire de contact sont utilisées uniquement
+          pour répondre à vos demandes et ne sont jamais transmises à des tiers.
+        </p>
+        <p>
+          Pour exercer vos droits, vous pouvez nous contacter :
+        </p>
+        <ul>
+          <li>Par email : eirl.repain@outlook.com</li>
+          <li>Par courrier : 530 Route nationale, 79360 Beauvoir sur Niort</li>
+        </ul>
+
+        <h2>5. Cookies</h2>
+        <p>
+          Ce site n'utilise pas de cookies à des fins de tracking ou de publicité.
+          Seuls des cookies techniques essentiels au fonctionnement du site peuvent être utilisés.
+        </p>
+
+        <h2>6. Responsabilité</h2>
+        <p>
+          EIRL REPAIN s'efforce d'assurer au mieux l'exactitude et la mise à jour des
+          informations diffusées sur ce site. Toutefois, EIRL REPAIN ne peut garantir
+          l'exactitude, la précision ou l'exhaustivité des informations mises à disposition
+          sur ce site.
+        </p>
+        <p>
+          En conséquence, EIRL REPAIN décline toute responsabilité pour les éventuelles
+          imprécisions, inexactitudes ou omissions portant sur des informations disponibles
+          sur ce site.
+        </p>
+
+        <h2>7. Liens hypertextes</h2>
+        <p>
+          Le site peut contenir des liens hypertextes vers d'autres sites. EIRL REPAIN
+          n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant
+          à leur contenu.
+        </p>
+
+        <h2>8. Droit applicable</h2>
+        <p>
+          Le présent site et les présentes mentions légales sont soumis au droit français.
+          En cas de litige, les tribunaux français seront seuls compétents.
+        </p>
+
+        <h2>9. Contact</h2>
+        <p>
+          Pour toute question relative aux présentes mentions légales, vous pouvez nous
+          contacter à l'adresse suivante : eirl.repain@outlook.com
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding: calc(80px + var(--spacing-3xl)) 0 var(--spacing-2xl);
+  }
+
+  .legal__content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .legal__content h2 {
+    font-size: 1.375rem;
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-black);
+  }
+
+  .legal__content h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal__content p {
+    color: var(--color-gray-dark);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .legal__content ul {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-lg);
+  }
+
+  .legal__content li {
+    color: var(--color-gray-dark);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-xs);
+    list-style-type: disc;
+  }
+
+  .legal__content strong {
+    color: var(--color-black);
+  }
+</style>
