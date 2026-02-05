@@ -5,7 +5,7 @@ import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'btp-sand.vercel.app', //'https://btp-sand.vercel.app'
+  site: 'https://btp-sand.vercel.app',
   output: 'server',
   adapter: node({
     mode: 'standalone'

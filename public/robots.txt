@@ -1,5 +1,5 @@
 # Robots.txt pour EIRL REPAIN
-# https://btp-sand.vercel.app
+# https://https://btp-sand.vercel.app
 
 User-agent: *
 Allow: /
