@@ -8,14 +8,13 @@ import SectionTitle from '../components/SectionTitle.astro';
 <Layout
   title="Mentions Légales"
   description="Mentions légales du site EIRL REPAIN, entreprise de maçonnerie et rénovation à Beauvoir sur Niort (79360)."
+  breadcrumbs={[{ name: "Mentions Légales", url: "/mentions-legales" }]}
 >
   <section class="page-header section--black">
     <div class="container">
-      <SectionTitle
-        title="Mentions "
-        highlight="Légales"
-        light={true}
-      />
+      <h1 class="page-header__title">
+        Mentions <span class="highlight">Légales</span>
+      </h1>
     </div>
   </section>
 

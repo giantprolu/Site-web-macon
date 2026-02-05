@@ -1,0 +1,11 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="180" height="180" rx="40" fill="#000000"/>
+  
+  <!-- Yellow accent -->
+  <rect y="0" width="180" height="6" fill="#FFE600"/>
+  
+  <!-- Initials -->
+  <text x="90" y="85" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" text-anchor="middle">EIRL</text>
+  <text x="90" y="135" font-family="Arial, sans-serif" font-size="40" font-weight="800" fill="#FFE600" text-anchor="middle">REPAIN</text>
+</svg>

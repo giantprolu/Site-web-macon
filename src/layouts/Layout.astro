@@ -3,21 +3,44 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface Props {
   title: string;
   description: string;
   canonical?: string;
   ogImage?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const {
   title,
   description,
   canonical = Astro.url.href,
-  ogImage = '/og-image.jpg'
+  ogImage = '/og-image.jpg',
+  breadcrumbs = []
 } = Astro.props;
 
 const siteTitle = `${title} | EIRL REPAIN - Maçonnerie & Rénovation`;
+const siteUrl = 'https://eirl-repain.fr';
+
+// Générer le schema BreadcrumbList si des breadcrumbs sont fournis
+const breadcrumbSchema = breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": siteUrl },
+    ...breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": crumb.name,
+      "item": `${siteUrl}${crumb.url}`
+    }))
+  ]
+} : null;
 ---
 
 <!doctype html>
@@ -64,6 +87,9 @@ const siteTitle = `${title} | EIRL REPAIN - Maçonnerie & Rénovation`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Preload font for better LCP -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
 
     <!-- Generator -->
     <meta name="generator" content={Astro.generator} />
@@ -117,6 +143,11 @@ const siteTitle = `${title} | EIRL REPAIN - Maçonnerie & Rénovation`;
         "value": "882 085 244 00011"
       }
     })} />
+
+    <!-- Schema.org BreadcrumbList (si breadcrumbs fournis) -->
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
   </head>
   <body>
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>

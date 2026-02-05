@@ -234,22 +234,93 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  const burger = document.querySelector('.header__burger');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  const burger = document.querySelector('.header__burger') as HTMLButtonElement;
+  const mobileMenu = document.querySelector('.mobile-menu') as HTMLElement;
+  const header = document.querySelector('.header') as HTMLElement;
+
+  // Éléments focusables dans le menu mobile
+  let focusableElements: HTMLElement[] = [];
+  let firstFocusable: HTMLElement | null = null;
+  let lastFocusable: HTMLElement | null = null;
+
+  function updateFocusableElements() {
+    if (!mobileMenu) return;
+    focusableElements = Array.from(
+      mobileMenu.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    );
+    firstFocusable = focusableElements[0] || null;
+    lastFocusable = focusableElements[focusableElements.length - 1] || null;
+  }
+
+  function openMenu() {
+    burger?.setAttribute('aria-expanded', 'true');
+    burger?.setAttribute('aria-label', 'Fermer le menu');
+    mobileMenu?.classList.add('is-open');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    updateFocusableElements();
+    // Focus sur le premier élément du menu
+    setTimeout(() => firstFocusable?.focus(), 100);
+  }
+
+  function closeMenu() {
+    burger?.setAttribute('aria-expanded', 'false');
+    burger?.setAttribute('aria-label', 'Ouvrir le menu');
+    mobileMenu?.classList.remove('is-open');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    // Retourner le focus au bouton burger
+    burger?.focus();
+  }
 
   burger?.addEventListener('click', () => {
     const isExpanded = burger.getAttribute('aria-expanded') === 'true';
-    burger.setAttribute('aria-expanded', (!isExpanded).toString());
-    mobileMenu?.classList.toggle('is-open');
-    mobileMenu?.setAttribute('aria-hidden', isExpanded.toString());
+    if (isExpanded) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  // Focus trap - garder le focus dans le menu mobile quand ouvert
+  mobileMenu?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    
+    updateFocusableElements();
+    
+    if (e.shiftKey) {
+      // Shift + Tab
+      if (document.activeElement === firstFocusable) {
+        e.preventDefault();
+        lastFocusable?.focus();
+      }
+    } else {
+      // Tab
+      if (document.activeElement === lastFocusable) {
+        e.preventDefault();
+        firstFocusable?.focus();
+      }
+    }
+  });
+
+  // Fermer avec Échap
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('is-open')) {
+      closeMenu();
+    }
   });
 
   // Fermer le menu mobile lors du clic sur un lien
-  document.querySelectorAll('.mobile-menu__link').forEach(link => {
-    link.addEventListener('click', () => {
-      burger?.setAttribute('aria-expanded', 'false');
-      mobileMenu?.classList.remove('is-open');
-      mobileMenu?.setAttribute('aria-hidden', 'true');
-    });
+  document.querySelectorAll('.mobile-menu__link, .mobile-menu__cta').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Fermer le menu si on redimensionne vers desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && mobileMenu?.classList.contains('is-open')) {
+      closeMenu();
+    }
   });
 </script>

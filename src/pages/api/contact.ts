@@ -5,7 +5,7 @@ import { Resend } from 'resend';
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 // Email de destination (celui qui reçoit les demandes de devis)
-const RECIPIENT_EMAIL = 'nathnathchav@gmail.com';   //'eirl.repain@outlook.com'
+const RECIPIENT_EMAIL = 'nathnathchav@gmail.com'; //'eirl.repain@outlook.com'
 
 // Email expéditeur (doit être vérifié sur Resend ou utiliser le domaine par défaut)
 // Pour commencer, on utilise le domaine Resend par défaut
