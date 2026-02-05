@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 
 const siteTitle = `${title} | EIRL REPAIN - Maçonnerie & Rénovation`;
-const siteUrl = 'https://eirl-repain.fr';
+const siteUrl = 'btp-sand.vercel.app'; //'https://btp-sand.vercel.app'
 
 // Générer le schema BreadcrumbList si des breadcrumbs sont fournis
 const breadcrumbSchema = breadcrumbs.length > 0 ? {
@@ -98,10 +98,10 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://eirl-repain.fr/#business",
+      "@id": "https://btp-sand.vercel.app/#business",
       "name": "EIRL REPAIN",
       "description": "Entreprise de maçonnerie et rénovation à Beauvoir sur Niort. Travaux de maçonnerie neuf et rénovation, nettoyage hydrofuge, toiture et façade.",
-      "url": "https://eirl-repain.fr",
+      "url": "https://btp-sand.vercel.app",
       "telephone": "+33678965418",
       "email": "eirl.repain@outlook.com",
       "address": {
@@ -136,7 +136,7 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
         }
       ],
       "sameAs": [],
-      "image": "https://eirl-repain.fr/og-image.jpg",
+      "image": "https://btp-sand.vercel.app/og-image.jpg",
       "identifier": {
         "@type": "PropertyValue",
         "name": "SIRET",

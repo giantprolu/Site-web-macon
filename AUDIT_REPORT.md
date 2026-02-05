@@ -50,14 +50,14 @@
 ```
 User-agent: *
 Allow: /
-Sitemap: https://eirl-repain.fr/sitemap-index.xml
+Sitemap: https://btp-sand.vercel.app/sitemap-index.xml
 ```
 
 **Verdict :** OK - Conforme
 
 ### 1.3 Sitemap XML
 **Génération :** Automatique via `@astrojs/sitemap`
-**URL :** `https://eirl-repain.fr/sitemap-index.xml`
+**URL :** `https://btp-sand.vercel.app/sitemap-index.xml`
 
 **Verdict :** OK - Les 4 pages prérendues seront incluses
 
@@ -199,8 +199,8 @@ h1: "Des prestations complètes pour tous vos projets" (implicite via SectionTit
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://eirl-repain.fr/" },
-    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://eirl-repain.fr/services" }
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://btp-sand.vercel.app/" },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://btp-sand.vercel.app/services" }
   ]
 }
 ```
@@ -214,7 +214,7 @@ h1: "Des prestations complètes pour tous vos projets" (implicite via SectionTit
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": "Maçonnerie",
-  "provider": { "@id": "https://eirl-repain.fr/#business" },
+  "provider": { "@id": "https://btp-sand.vercel.app/#business" },
   "areaServed": { "@type": "GeoCircle", "geoRadius": "50000" },
   "description": "Construction de murs, fondations, dalles..."
 }
