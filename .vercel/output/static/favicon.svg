@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Background -->
-  <rect width="128" height="128" fill="#000000"/>
-  <!-- Letter R stylized -->
-  <path d="M32 24h40c13.3 0 24 10.7 24 24v8c0 10.5-6.8 19.4-16.2 22.6L96 104H72L58.5 82H56v22H32V24zm24 38h14c5.5 0 10-4.5 10-10v-4c0-5.5-4.5-10-10-10H56v24z" fill="#FFE600"/>
-</svg>

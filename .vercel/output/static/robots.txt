@@ -1,8 +1,0 @@
-# Robots.txt pour EIRL REPAIN
-# https://https://btp-sand.vercel.app
-
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://btp-sand.vercel.app/sitemap-index.xml
